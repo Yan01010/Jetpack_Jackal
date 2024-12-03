@@ -20,15 +20,13 @@ void draw(){
   
   //display the start up menu
   if (menu){
-  st.display();
+  st.display(); 
   st.button();
   }
   
-  //press on button to start the game
-  if ( mousePressed && mouseX > width / 2 - 50 && mouseX < width / 2 + 50 &&
-   mouseY > height / 2 + 60 && mouseY < height / 2 + 100){
-    gameStart = true; 
-    menu = false;
+ //when mouse pressed, check if the mouse is in the button area
+   if(mousePressed) {
+     pressed(150,360,250,400);
    }
   
   //if the game started, display jackal and obstacle
@@ -52,12 +50,17 @@ void draw(){
   
   //collision detection between jackal and obstacle
   if (j.jY > height || j.jY < 0 || 
-       (j.jX > ob.obX && j.jX < ob.obX + ob.obWidth &&
-       (j.jY < ob.gapY - ob.gapHeight / 2 || j.jY > ob.gapY + ob.gapHeight / 2))){
+  (j.jX > ob.obX && j.jX < ob.obX + ob.obWidth && 
+  (j.jY < ob.gapY - ob.gapHeight / 2 || j.jY > ob.gapY + ob.gapHeight / 2))){
    gameOver = true; 
   }
   
 }
+
+  
+ 
+  
+
 
 void reset(){
   j.jY = height / 2;
@@ -67,4 +70,16 @@ void reset(){
   //display menu without starting game
   menu = true;
   gameStart = false;
+}
+
+//if mouse pressed on button, start the game
+void pressed(int x,int y, int x2, int y2){
+ if(x < mouseX && x2 > mouseX && y < mouseY && y2 > mouseY){
+   gameStart = true;
+   menu = false;
+   }
+}
+
+void intersect(){
+  
 }
