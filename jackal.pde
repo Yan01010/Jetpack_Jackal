@@ -3,7 +3,7 @@ class jackal{
   PImage jStill;
   PImage jFly2;
   PImage jStill2;
-  float jY, jVel;
+  float jY = height / 2, jVel;
   float jX = 100;
   float gravity = 0.6;
   float lift = -10;
@@ -42,9 +42,9 @@ class jackal{
    imageMode(CENTER);
    if (keyPressed && key == ' '){
     jVel = lift; 
-    image(jFly, jX, jY);
+    image(jFly2, jX, jY);
    }else{
-     image(jStill, jX, jY);
+     image(jStill2, jX, jY);
    }
   }
 }

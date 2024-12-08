@@ -19,7 +19,7 @@ boolean select = false;
 // selected bordered image visibility
 boolean visible1 = false;
 boolean visible2 = false;
-boolean jackal1 = false;
+//boolean jackal1 = false;
 
 void setup() {
   size(400, 600);
@@ -56,7 +56,7 @@ void draw(){
    }
   
   //if the game started, display jackal and obstacle
-  if (gameStart && !gameOver &&!select){
+  if (visible1 && gameStart && !gameOver &&!select || visible2 && gameStart && !gameOver &&!select){
    bg.bg();
    for (firefly firefly : fireflies) {
     firefly.move();
@@ -65,7 +65,8 @@ void draw(){
    ob.display();
    if (visible1){
    j.jackal1();
-   }else if (visible2){
+   }
+   if (visible2){
      j.jackal2();
    }
    bg.bg1();
@@ -76,10 +77,13 @@ void draw(){
   (j.jX + 30 > ob.obX && j.jX < ob.obX + ob.obWidth && 
   (j.jY - 60 < ob.gapY - ob.gapHeight / 2 || j.jY + 60 > ob.gapY + ob.gapHeight / 2))){
    gameOver = true; 
+   gameStart = false;
+   select = false;
+   menu = false;
   }
    
    //if the game is over, press r to restart the game from menu page
-   if (gameOver && !menu && !select){
+   if (gameOver && !menu && !gameStart &&!select){
     over.display();
     if ( keyPressed && key == 'r'){
      menu = true;
@@ -89,23 +93,30 @@ void draw(){
     }
   }
   
-  //if (select && !menu && !gameStart && !gameOver){
+  //selection menu
+  if (select && !menu && !gameStart && !gameOver){
     slct.display();
     slct.jackal1();
     slct.jackal2();
     
+    //if selected jackal 1, display bordered image
     if (visible1){
       image(flyborder, slct.x1 -5, slct.y);
     }
-    
+    //if selected jackal 2, display bordered image
     if (visible2){
       image(fly2border, slct.x2 -5, slct.y);
     }
-  //}
+    
+    if (visible1 && keyPressed && key == ' ' || visible2 && keyPressed && key == ' '){
+     select = false;
+     gameStart = true;
+    }
+  }
   
 }
 
-
+//reset variables
 void reset(){
   j.jY = height / 2;
   j.jVel = 0;

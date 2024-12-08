@@ -1,7 +1,7 @@
 class obstacle{
-  float obX, obWidth = 100;
+  float obX = width, obWidth = 100;
   float gapHeight = 280;
-  float gapY;
+  float gapY = random(220, height - 220);
   float obSpeed = 3;
   
   obstacle(){
