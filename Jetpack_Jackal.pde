@@ -1,3 +1,5 @@
+PImage flyborder;
+PImage fly2border;
 start st;
 jackal j;
 over over;
@@ -12,7 +14,12 @@ selection slct;
 boolean menu = true;
 boolean gameOver = false;
 boolean gameStart = false;
+//selection menu
 boolean select = false;
+// selected bordered image visibility
+boolean visible1 = false;
+boolean visible2 = false;
+boolean jackal1 = false;
 
 void setup() {
   size(400, 600);
@@ -26,6 +33,12 @@ void setup() {
     fireflies[i] = new firefly(random(width), random(height));
   }
   slct = new selection();
+  
+  //selected jackals with border
+  flyborder = loadImage("flyborder.png");
+    flyborder.resize(200, 200);
+    fly2border = loadImage("fly2border.png");
+    fly2border.resize(200, 200);
 }
 
 void draw(){
@@ -39,17 +52,22 @@ void draw(){
  //when mouse pressed, check if the mouse is in the button area
    if(mousePressed) {
      pressed(150,450,250,490);
+     selected();
    }
   
   //if the game started, display jackal and obstacle
-  if (gameStart && !gameOver){
+  if (gameStart && !gameOver &&!select){
    bg.bg();
    for (firefly firefly : fireflies) {
     firefly.move();
     firefly.display();
    }
    ob.display();
-   j.display();
+   if (visible1){
+   j.jackal1();
+   }else if (visible2){
+     j.jackal2();
+   }
    bg.bg1();
    }
    
@@ -61,7 +79,7 @@ void draw(){
   }
    
    //if the game is over, press r to restart the game from menu page
-   if (gameOver && !menu){
+   if (gameOver && !menu && !select){
     over.display();
     if ( keyPressed && key == 'r'){
      menu = true;
@@ -70,7 +88,21 @@ void draw(){
      reset();
     }
   }
-  slct.display();
+  
+  //if (select && !menu && !gameStart && !gameOver){
+    slct.display();
+    slct.jackal1();
+    slct.jackal2();
+    
+    if (visible1){
+      image(flyborder, slct.x1 -5, slct.y);
+    }
+    
+    if (visible2){
+      image(fly2border, slct.x2 -5, slct.y);
+    }
+  //}
+  
 }
 
 
@@ -87,7 +119,20 @@ void reset(){
 //if mouse pressed on button, start the game
 void pressed(int x,int y, int x2, int y2){
  if( x < mouseX && x2 > mouseX && y < mouseY && y2 > mouseY){
-   gameStart = true;
+   select = true;
    menu = false;
+   gameStart = false;
    }
+}
+
+void selected(){
+  if ( mouseX > 20 && mouseX < 200 && mouseY > 110 && mouseY < 290){
+    visible1 = !visible1;
+    visible2 = false;
+  }
+  
+  if ( mouseX > 210 && mouseX < 390 && mouseY > 110 && mouseY < 290){
+    visible2 = !visible2;
+    visible1 = false;
+  }
 }
