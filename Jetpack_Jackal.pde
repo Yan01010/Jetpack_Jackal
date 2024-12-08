@@ -5,7 +5,7 @@ obstacle ob;
 background bg;
 firefly fl;
 //number of fireflies
-int numFireflies = 20;
+int numFireflies = 15;
 firefly[] fireflies;
 
 boolean menu = true;

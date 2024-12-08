@@ -17,8 +17,8 @@ class obstacle{
      }
      
      stroke(0);
-     strokeWeight(2);
-     fill(139, 69, 19);
+     strokeWeight(1);
+     fill(80, 50, 5);
      rect(obX, 0, obWidth, gapY - gapHeight / 2);
      rect(obX, gapY + gapHeight / 2, obWidth, height);
   }

@@ -40,6 +40,13 @@ class firefly {
   }
 
   void display() {
+    //white light of firefly
+    noStroke();
+    fill(255, 255, 255, 80);
+    ellipse(position.x, position.y, glowSpeed+15, glowSpeed+15);
+    fill(255, 255, 255, 30);
+    ellipse(position.x, position.y, glowSpeed+20, glowSpeed+20);
+    
     //yellow glow with random variable
     fill(255, 255, 0, brightness);
     noStroke();
