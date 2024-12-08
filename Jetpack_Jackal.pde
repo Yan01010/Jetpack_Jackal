@@ -1,7 +1,12 @@
+//highlighted jackal 1
 PImage flyborder;
+//highlighted jackal 2
 PImage fly2border;
+//start menu
 start st;
+//jackals
 jackal j;
+//game over menu
 over over;
 obstacle ob;
 background bg;
@@ -14,12 +19,11 @@ selection slct;
 boolean menu = true;
 boolean gameOver = false;
 boolean gameStart = false;
-//selection menu
 boolean select = false;
-// selected bordered image visibility
+// selected jackal 1, highlight visibility
 boolean visible1 = false;
+// selected jackal 2, highlight visibility
 boolean visible2 = false;
-//boolean jackal1 = false;
 
 void setup() {
   size(400, 600);
@@ -49,6 +53,7 @@ void draw(){
   st.display(); 
   st.button();
   }
+  
  //when mouse pressed, check if the mouse is in the button area
    if(mousePressed) {
      pressed(150,450,250,490);
@@ -57,18 +62,24 @@ void draw(){
   
   //if the game started, display jackal and obstacle
   if (visible1 && gameStart && !gameOver &&!select || visible2 && gameStart && !gameOver &&!select){
-   bg.bg();
+   //disply background
+    bg.bg();
+    //display fireflies
    for (firefly firefly : fireflies) {
     firefly.move();
     firefly.display();
    }
+   //display obstacles
    ob.display();
+   //if selected jackal 1, display jackal 1
    if (visible1){
    j.jackal1();
    }
+   //if selected jackal 2, display jackal 2
    if (visible2){
      j.jackal2();
    }
+   //display foreground
    bg.bg1();
    }
    
@@ -88,7 +99,7 @@ void draw(){
     if ( keyPressed && key == 'r'){
      menu = true;
      gameOver = false;
-     //reset the values for jackal and obstacle
+     //reset the variables for jackal and obstacle
      reset();
     }
   }
@@ -98,7 +109,6 @@ void draw(){
     slct.display();
     slct.jackal1();
     slct.jackal2();
-    
     //if selected jackal 1, display bordered image
     if (visible1){
       image(flyborder, slct.x1 -5, slct.y);
@@ -107,13 +117,11 @@ void draw(){
     if (visible2){
       image(fly2border, slct.x2 -5, slct.y);
     }
-    
     if (visible1 && keyPressed && key == ' ' || visible2 && keyPressed && key == ' '){
      select = false;
      gameStart = true;
     }
   }
-  
 }
 
 //reset variables
@@ -127,7 +135,7 @@ void reset(){
   gameStart = false;
 }
 
-//if mouse pressed on button, start the game
+//if mouse pressed on button, turn to selection menu
 void pressed(int x,int y, int x2, int y2){
  if( x < mouseX && x2 > mouseX && y < mouseY && y2 > mouseY){
    select = true;
@@ -136,12 +144,14 @@ void pressed(int x,int y, int x2, int y2){
    }
 }
 
+//selecting jackals
 void selected(){
+  //if select jackal 1, it is highlighted and jackal 2 is de-selected
   if ( mouseX > 20 && mouseX < 200 && mouseY > 110 && mouseY < 290){
     visible1 = !visible1;
     visible2 = false;
   }
-  
+  //if select jackal 2, it is highlighted and jackal 1 is de-selected
   if ( mouseX > 210 && mouseX < 390 && mouseY > 110 && mouseY < 290){
     visible2 = !visible2;
     visible1 = false;
