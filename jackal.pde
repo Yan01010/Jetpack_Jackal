@@ -10,7 +10,7 @@ class jackal{
   
   void display(){
     fill(255);
-    ellipse(jX, jY, 60, 60);
+    rect(jX, jY, 60, 60);
   }
   
   void run(){
