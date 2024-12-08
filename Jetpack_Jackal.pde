@@ -7,10 +7,12 @@ firefly fl;
 //number of fireflies
 int numFireflies = 15;
 firefly[] fireflies;
+selection slct;
 
 boolean menu = true;
 boolean gameOver = false;
 boolean gameStart = false;
+boolean select = false;
 
 void setup() {
   size(400, 600);
@@ -23,6 +25,7 @@ void setup() {
   for (int i = 0; i < numFireflies; i++) {
     fireflies[i] = new firefly(random(width), random(height));
   }
+  slct = new selection();
 }
 
 void draw(){
@@ -34,7 +37,7 @@ void draw(){
   st.button();
   }
  //when mouse pressed, check if the mouse is in the button area
-   if( mousePressed) {
+   if(mousePressed) {
      pressed(150,450,250,490);
    }
   
@@ -67,6 +70,7 @@ void draw(){
      reset();
     }
   }
+  slct.display();
 }
 
 
