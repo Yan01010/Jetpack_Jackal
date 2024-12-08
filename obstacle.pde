@@ -16,6 +16,7 @@ class obstacle{
        gapY = random(220, height - 220);
      }
      
+     stroke(0);
      strokeWeight(2);
      fill(139, 69, 19);
      rect(obX, 0, obWidth, gapY - gapHeight / 2);

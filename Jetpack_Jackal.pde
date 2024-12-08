@@ -3,6 +3,10 @@ jackal j;
 over over;
 obstacle ob;
 background bg;
+firefly fl;
+//number of fireflies
+int numFireflies = 20;
+firefly[] fireflies;
 
 boolean menu = true;
 boolean gameOver = false;
@@ -15,6 +19,10 @@ void setup() {
   over = new over();
   ob = new obstacle();
   bg = new background();
+  fireflies = new firefly[numFireflies];
+  for (int i = 0; i < numFireflies; i++) {
+    fireflies[i] = new firefly(random(width), random(height));
+  }
 }
 
 void draw(){
@@ -33,6 +41,10 @@ void draw(){
   //if the game started, display jackal and obstacle
   if (gameStart && !gameOver){
    bg.bg();
+   for (firefly firefly : fireflies) {
+    firefly.move();
+    firefly.display();
+   }
    ob.display();
    j.display();
    bg.bg1();
