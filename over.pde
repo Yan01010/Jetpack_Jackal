@@ -18,11 +18,11 @@ class over{
     //calculate oscillating text opacity using sine wave
     opacity = map(sin(angle), -1, 1, minOpacity, maxOpacity);
     fill(255, 255, 255, opacity);
-    textSize(38);
+    textSize(56);
     textAlign(CENTER, CENTER);
     text("Game Over", width / 2, height / 2 - 20);
     textSize(24);
-    text("Press R to Restart", width / 2, height / 2 + 20);
+    text("Press R to Restart", width / 2, height / 2 + 30);
     
     //update angle
     angle += speed;
