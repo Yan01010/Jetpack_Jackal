@@ -19,7 +19,6 @@ void setup() {
 
 void draw(){
   background(255);
-  bg.bg();
   
   //display the start up menu and button
   if (menu){
@@ -33,6 +32,7 @@ void draw(){
   
   //if the game started, display jackal and obstacle
   if (gameStart && !gameOver){
+   bg.bg();
    ob.display();
    j.display();
    bg.bg1();
