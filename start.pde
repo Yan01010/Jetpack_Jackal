@@ -55,7 +55,7 @@ class start{
     //calculate oscillation using sine wave
     float offsetY = sin(angle) * amplitude;
     position.y = 190 + offsetY;
-    //update angle for smooth motion
+    //update angle
     angle += speed;
     
     //calculate oscillating text opacity using sine wave
@@ -66,7 +66,7 @@ class start{
     textAlign(CENTER, CENTER);
     textSize(18);
     text("Press SPACE to fly", width / 2, 560);
-    text("Click the Start button to begin", width / 2, 580);
+    text("Left mouse button to select", width / 2, 580);
     }
     
     void button(){
