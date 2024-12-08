@@ -35,7 +35,7 @@ void draw(){
   }
  //when mouse pressed, check if the mouse is in the button area
    if( mousePressed) {
-     pressed(150,360,250,400);
+     pressed(150,450,250,490);
    }
   
   //if the game started, display jackal and obstacle
