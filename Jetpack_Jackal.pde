@@ -2,6 +2,7 @@ start st;
 jackal j;
 over over;
 obstacle ob;
+background bg;
 
 boolean menu = true;
 boolean gameOver = false;
@@ -13,10 +14,12 @@ void setup() {
   j = new jackal();
   over = new over();
   ob = new obstacle();
+  bg = new background();
 }
 
 void draw(){
-  background(0);
+  background(255);
+  bg.bg();
   
   //display the start up menu and button
   if (menu){
@@ -32,13 +35,13 @@ void draw(){
   if (gameStart && !gameOver){
    ob.display();
    j.display();
-   j.run();
+   bg.bg1();
    }
    
    //collision detection between jackal and obstacle
   if (j.jY > height || j.jY < 0 || 
-  (j.jX + 40 > ob.obX && j.jX < ob.obX + ob.obWidth && 
-  (j.jY < ob.gapY - ob.gapHeight / 2 || j.jY + 40 > ob.gapY + ob.gapHeight / 2))){
+  (j.jX + 30 > ob.obX && j.jX < ob.obX + ob.obWidth && 
+  (j.jY - 60 < ob.gapY - ob.gapHeight / 2 || j.jY + 60 > ob.gapY + ob.gapHeight / 2))){
    gameOver = true; 
   }
    
@@ -52,7 +55,6 @@ void draw(){
      reset();
     }
   }
-  
 }
 
 
@@ -60,7 +62,7 @@ void reset(){
   j.jY = height / 2;
   j.jVel = 0;
   ob.obX = width;
-  ob.gapY = random(180, height - 180);
+  ob.gapY = random(220, height - 220);
   //display menu without starting game
   menu = true;
   gameStart = false;

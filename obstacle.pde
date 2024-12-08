@@ -1,6 +1,6 @@
 class obstacle{
-  float obX, obWidth = 80;
-  float gapHeight = 220;
+  float obX, obWidth = 100;
+  float gapHeight = 280;
   float gapY;
   float obSpeed = 3;
   
@@ -13,10 +13,11 @@ class obstacle{
      obX -= obSpeed;
      if (obX < -obWidth) {
        obX = width;
-       gapY = random(180, height - 180);
+       gapY = random(220, height - 220);
      }
      
-     fill(34, 139, 34);
+     strokeWeight(2);
+     fill(139, 69, 19);
      rect(obX, 0, obWidth, gapY - gapHeight / 2);
      rect(obX, gapY + gapHeight / 2, obWidth, height);
   }
