@@ -81,6 +81,8 @@ void draw(){
    }
    //display foreground
    bg.bg1();
+   //score keeping
+   ob.score();
    }
    
    //collision detection between jackal and obstacle
@@ -96,6 +98,8 @@ void draw(){
    //if the game is over, press r to restart the game from menu page
    if (gameOver && !menu && !gameStart &&!select){
     over.display();
+    //display gained score
+    ob.score();
     if ( keyPressed && key == 'r'){
      menu = true;
      gameOver = false;
@@ -133,6 +137,7 @@ void reset(){
   //display menu without starting game
   menu = true;
   gameStart = false;
+  ob.score = 0;
 }
 
 //if mouse pressed on button, turn to selection menu
